@@ -24,6 +24,7 @@ django-redis = "^4.11.0"
 djangorestframework = "^3.11.0"
 django-watson = "^1.5.4"
 typer = "^0.0.8"
+psycopg2 = "^2.8.4"
 
 [tool.poetry.dev-dependencies]
 Werkzeug = "^1.0.0"
