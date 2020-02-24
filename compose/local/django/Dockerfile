@@ -13,9 +13,16 @@ RUN apt-get update \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-# Requirements are installed here to ensure they will be cached.
-COPY ./requirements /requirements
-RUN pip install -r /requirements/local.txt
+# Install Poetry
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+RUN mkdir /etc/bash_completion.d
+RUN /root/.poetry/bin/poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
+
+# Project Initialization
+COPY poetry.lock pyproject.toml /app/
+WORKDIR /app
+RUN /root/.poetry/bin/poetry config virtualenvs.create false \
+    && /root/.poetry/bin/poetry install --no-interaction --no-ansi --no-root
 
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
@@ -24,6 +31,8 @@ RUN chmod +x /entrypoint
 COPY ./compose/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
+
+COPY ./compose/local/django/bashrc /root/.bashrc
 
 WORKDIR /app
 
