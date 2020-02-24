@@ -1,0 +1,17 @@
+version: "3"
+services:
+  notebook:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: vmt_local_notebook
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+      - .env
+    privileged: true
+    ports:
+    - "8888:8888"
+    command: /bin/bash -c "cd notebooks;python ../manage.py shell_plus --notebook"
