@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Jochen Wersdörfer <jochen@wersdoerfer.de>"]
 license = "MIT"
+packages = [
+    { include = "./commands.py" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -20,6 +23,7 @@ django-crispy-forms = "^1.8.1"
 django-redis = "^4.11.0"
 djangorestframework = "^3.11.0"
 django-watson = "^1.5.4"
+typer = "^0.0.8"
 
 [tool.poetry.dev-dependencies]
 Werkzeug = "^1.0.0"
