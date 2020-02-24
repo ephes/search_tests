@@ -1,7 +1,6 @@
 """
 Base settings to build other settings files upon.
 """
-
 import environ
 
 ROOT_DIR = (
@@ -74,7 +73,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "search_tests.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    "search_tests.documents.apps.DocumentsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
