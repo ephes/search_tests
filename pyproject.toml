@@ -27,7 +27,7 @@ typer = "^0.0.8"
 psycopg2 = "^2.8.4"
 
 [tool.poetry.dev-dependencies]
-Werkzeug = "^1.0.0"
+Werkzeug = "^2.2.3"
 Sphinx = "^2.4.3"
 ipdb = "^0.12.3"
 mypy = "^0.761"
